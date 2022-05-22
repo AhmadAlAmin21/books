@@ -1,4 +1,4 @@
-import React, { useState} from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {
@@ -8,12 +8,28 @@ import {
 } from 'reactstrap';
 import axios from 'axios';
 import BookCard from './BookCard.js';
+import {Link} from 'react-scroll';
+import bgvid from './videos/bgvid.mp4'
+import LoginButton from "./components/login";
+import LogoutButton from "./components/logout";
+import { gapi } from 'gapi-script';
+
+const CLIENT_ID = "892353475241-8st4rgu8113tlaajj7mi4ftadmjhi5te.apps.googleusercontent.com";
 
 function App() {
-
+  
   const [query, setQuery] = useState('');
   const [cards, setCards] = useState([]);
 
+  useEffect(() => {
+    function start() {
+      gapi.client.init({
+        clientId: CLIENT_ID,
+      })
+    };
+  
+    gapi.load('client:auth2',start);
+  });
 
   const handleSubmit = () => {
       axios
@@ -27,36 +43,46 @@ function App() {
         .catch(err => {
           console.log(err.response);
         });
-    
   };
 
   const mainHeader = () => {
     return (
       <div className='header d-flex justify-content-center align-items-center flex-column'>
-        
+        <div className='google-button'> 
+          {/* <LoginButton />
+          <LogoutButton /> */}
+        </div> 
         <h1
           className='display-2 text-center text-white mb-3'
-          style={{ zIndex: 2 }}
         >
           Search For Authors
         </h1>
         <div style={{ width: '60%', zIndex: 2 }}>
           <InputGroup size='lg' className='mb-3'>
             <Input
-              placeholder='Author Name'
+              placeholder='Author Name...'
               value={query}
               onChange={e => setQuery(e.target.value)}
             />
-              <Button color='secondary' onClick={handleSubmit}>
-                <i className='fas fa-search'></i>
+            <Link className='Link' to="cards" smooth={true} duration={0}>
+              <Button className='search_button' color='secondary' onClick={handleSubmit} type="submit">
+              <i class="fa fa-search" aria-hidden="true"></i>
               </Button>
+              </Link>
           </InputGroup>
+          
           <div className='d-flex text-white justify-content-center'>
           </div>
         </div>
+        <video className='videoTag' autoPlay loop muted>
+          <source src={bgvid} type='video/mp4' />
+        </video>
       </div>
+      
     );
   };
+
+
 
   const handleCards = () => {
 
@@ -86,18 +112,25 @@ function App() {
         );
       });
       return (
-        <div className='container my-5'>
+        <div id='asd' className='container my-5'>
           <div className='row'>{items}</div>
         </div>
       );
     
   };
+
   return (
-    <div className='w-100 h-100'>
-      {mainHeader()}
-      {handleCards()}
+    <div>
+      <div className='header'>
+        {mainHeader()}
+      </div>
+      <div className='cards'>
+        {handleCards()}
+      </div>
     </div>
   );
+  
 }
+
 
 export default App;

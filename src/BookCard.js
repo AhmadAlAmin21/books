@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Card, CardTitle, CardImg, CardBody, Button, Modal, CardText } from 'reactstrap';
+import { Card, CardTitle, CardImg, CardBody, Modal, CardText } from 'reactstrap';
+
 const BookCard = ({
   thumbnail,
   title,
@@ -20,13 +21,12 @@ const BookCard = ({
   const toggle = () => setModal(!modal);
 
   return (
-    <Card style={{ width: '233px' }} className='m-auto '>
+    <Card style={{ width: '240px', height: '400px' }} className='m-auto ' onClick={toggle}>
       <CardImg
         top
         style={{ width: '100%', height: '233px' }}
         src={thumbnail}
         alt={title}
-        onClick={toggle}
       />
       <CardBody>
         <CardTitle>{title}</CardTitle>
@@ -54,16 +54,12 @@ const BookCard = ({
         </div>
         <div className='modal-footer'>
           <div>
-            <a
-              href={previewLink}
-            >
+            <a href={previewLink}>
               Preview Link
             </a>
           </div>
           <div>
-            <a
-              href={infoLink}
-            >
+            <a href={infoLink}>
               Info Link
             </a>
           </div>
