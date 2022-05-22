@@ -9,7 +9,7 @@ import {
 import axios from 'axios';
 import BookCard from './BookCard.js';
 import {Link} from 'react-scroll';
-import bgvid from './videos/bgvid.mp4'
+import bgvid2 from './videos/bgvid2.mp4';
 import LoginButton from "./components/login";
 import LogoutButton from "./components/logout";
 import { gapi } from 'gapi-script';
@@ -75,7 +75,7 @@ function App() {
           </div>
         </div>
         <video className='videoTag' autoPlay loop muted>
-          <source src={bgvid} type='video/mp4' />
+          <source src={bgvid2} type='video/mp4' />
         </video>
       </div>
       
