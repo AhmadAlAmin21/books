@@ -10,8 +10,17 @@ body {
   width: 40px;
 }
 
+.logout_button{
+  position: absolute;
+  z-index: 1;
+  margin-top: 20px;
+  margin-left: 20px;
+  width: 150px;
+}
+
 button{
   width: 250px;
+  justify-content: center;
 }
 
 .header {
