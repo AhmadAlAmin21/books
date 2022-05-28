@@ -2,25 +2,38 @@ body {
   overflow-x: hidden;
 }
 
-.search_button{
-  background-color: rgb(27, 26, 39);
-  height: 5vh;
-  position: relative;
-  background-attachment: fixed;
-  width: 40px;
-}
-
 .logout_button{
   position: absolute;
-  z-index: 1;
+  z-index: 3;
   margin-top: 20px;
   margin-left: 20px;
   width: 150px;
+  opacity: 50%;
+}
+
+.chevrondiv{
+  position:relative;
+  bottom: 0;
+}
+
+.chevronbutton{
+  background: transparent;
+  border: none !important;
+  width: 100px;
+  margin-bottom: 10px;
 }
 
 button{
   width: 250px;
   justify-content: center;
+  opacity: 90%;
+}
+
+
+.cards{
+  background-color: rgb(27, 26, 39);
+  margin-top: -450px;
+  z-index: -1;
 }
 
 .header {
@@ -30,6 +43,7 @@ button{
   height: 100vh;
   position: relative;
   background-attachment: fixed;
+  margin-bottom: 0px;
 }
 
 .m-auto:hover{
@@ -40,15 +54,12 @@ button{
   transition: all 300ms ease;
 }
 
-.cards{
-  height: 100vh;
-}
 
 video{
   object-fit: fill;
   position: absolute;
   min-width: 100%;
   height: 100vh;
-  opacity: 10%;
-  
+  opacity: 50%;
+  margin-bottom: 0px;
 }

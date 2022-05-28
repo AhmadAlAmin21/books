@@ -25,16 +25,14 @@ function LoginPage() {
     return (
       <div className='header d-flex justify-content-center align-items-center flex-column'>
         <h1
-          className='display-2 text-center text-white mb-3'
+          className='display-2 text-center text-white'
         >
           Search For Authors
         </h1>
-        <div style={{ width: '60%', zIndex: 2 }}>
-
-          <div className='d-flex justify-content-center align-items-center flex-column'>
+        <div style={{ zIndex: 1 }}>
+          <div>
             <LoginButton />
           </div>
-
         </div>
         <video className='videoTag' autoPlay loop muted>
           <source src={bgvid2} type='video/mp4' />

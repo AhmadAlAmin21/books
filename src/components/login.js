@@ -25,7 +25,6 @@ function Login(){
              onSuccess={onSuccess}
              onFaliure={onFaliure}
              cookiePolicy={'single_host_origin'}
-             isSignedIn={true}
              />
         </div>
     )

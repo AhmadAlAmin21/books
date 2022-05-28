@@ -28,7 +28,7 @@ const BookCard = ({
         src={thumbnail}
         alt={title}
       />
-      <CardBody>
+      <CardBody className='overflow-hidden'>
         <CardTitle>{title}</CardTitle>
         <CardText>{publisher}</CardText>
         <CardText>{date}</CardText>
@@ -66,6 +66,7 @@ const BookCard = ({
         </div>
       </Modal>
     </Card>
+    
   );
 };
 
