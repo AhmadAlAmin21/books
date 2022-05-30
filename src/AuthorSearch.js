@@ -19,6 +19,7 @@ function AuthorSearch() {
   const [query, setQuery] = useState('');
   const [cards, setCards] = useState([]);
   const [Index, setIndex] = useState(0);
+  let iconStyles = { color: "white", fontSize: "3em"};
 
   useEffect(() => {
     function start() {
@@ -47,14 +48,8 @@ function AuthorSearch() {
   const mainHeader = () => {
     return (
     <div>
-      <div className='logout_button'>
-        
-      </div>
       <div className='position-relative header d-flex justify-content-top align-items-center flex-column'>
-
-        <h1
-          className='display-2 text-center text-white mb-3 mt-5'
-        >
+        <h1 className='display-2 text-center text-white mb-3 mt-5'>
           Search For Authors
         </h1>
         <div style={{ width: '60%', zIndex: 2 }}>
@@ -68,25 +63,13 @@ function AuthorSearch() {
           <div className='position-relative d-flex justify-content-center align-items-center flex-column mb-3'>
           <LogoutButton/>
           </div>
-        <div>
-      </div>
         </div>
-        <video className='videoTag' autoPlay loop muted>
-          <source src={bgvid2} type='video/mp4' />
-        </video>
       </div>
     </div>
     );
   };
 
-
-
-  const pagination = () => {
-
-    let iconStyles = { color: "white", fontSize: "3em"};
-
     const indexPlus = () => {
-    
       return(
         setIndex( Index + 12 ) &
         handleSubmit() &
@@ -103,22 +86,6 @@ function AuthorSearch() {
       );}
     };
 
-    return(
-      <div className='chevrondiv'>
-      <div className='d-flex justify-content-center align-items-center'>
-      <div className='chevron'>
-        <button className='chevronbutton' onClick={indexMinus}>
-        <FaChevronLeft style={iconStyles}/>
-        </button>
-        <button className='chevronbutton' onClick={indexPlus}>
-        <FaChevronRight style={iconStyles}/>
-        </button>
-      </div>
-    </div>
-    </div>
-    );
-  };
-
   const handleCards = () => {
 
       const items = cards.map((item) => {
@@ -128,7 +95,7 @@ function AuthorSearch() {
         }
 
         return (
-          <div className='col-lg-3 mb-5' key={item.id}>
+          <div className='col-lg-4 mb-3' key={item.id}>
             <BookCard
               thumbnail={thumbnail}
               title={item.volumeInfo.title}
@@ -147,11 +114,8 @@ function AuthorSearch() {
         );
       });
           return (
-
-           <div className='container my-5 '>
-             {pagination()}
+           <div className='container'>
             <div className='row'>{items}</div>
-            
         </div>
 
       );
@@ -159,17 +123,21 @@ function AuthorSearch() {
   };
 
     return (
-      <div>
-        <div className='header'>
-          {mainHeader()}
+      <div id='page'>
+        <video className='videoTag' autoPlay loop muted>
+          <source src={bgvid2} type='video/mp4' />
+        </video>
+        <div id='header'> {mainHeader()} </div>
+        <div id='left' onClick={indexMinus}>
+         <FaChevronLeft style={iconStyles}/>
         </div>
-        <div className='cards'>
-          {handleCards()}
+        <div id='content'> {handleCards()} </div>
+        <div id='right' onClick={indexPlus}>
+        <FaChevronRight style={iconStyles}/>
         </div>
       </div>
     );
   
 }
-
 
 export default AuthorSearch;

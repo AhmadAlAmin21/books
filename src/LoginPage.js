@@ -5,7 +5,6 @@ import bgvid2 from './videos/bgvid2.mp4';
 import LoginButton from "./components/login";
 import { gapi } from 'gapi-script';
 
-
 const clientId = "892353475241-8st4rgu8113tlaajj7mi4ftadmjhi5te.apps.googleusercontent.com";
 
 function LoginPage() {
@@ -17,36 +16,32 @@ function LoginPage() {
         scope: ""
       })
     };
-  
     gapi.load('client:auth2', start);
   });
 
   const mainHeader = () => {
     return (
-      <div className='header d-flex justify-content-center align-items-center flex-column'>
-        <h1
-          className='display-2 text-center text-white'
-        >
+    <div>
+      <div className='position-relative header d-flex justify-content-top align-items-center flex-column'>
+        <h1 className='display-2 text-center text-white mb-3 mt-5'>
           Search For Authors
         </h1>
-        <div style={{ zIndex: 1 }}>
-          <div>
-            <LoginButton />
+        <div style={{ width: '60%', zIndex: 2 }}>
+          <div className='position-relative d-flex justify-content-center align-items-center flex-column mb-3'>
+          <LoginButton/>
           </div>
         </div>
-        <video className='videoTag' autoPlay loop muted>
-          <source src={bgvid2} type='video/mp4' />
-        </video>
       </div>
-      
+    </div>
     );
   };
 
     return (
-      <div>
-        <div className='header'>
-          {mainHeader()}
-        </div>
+      <div id='page'>
+          <video className='videoTag' autoPlay loop muted>
+            <source src={bgvid2} type='video/mp4' />
+          </video>
+        <div id='header'> {mainHeader()} </div>
       </div>
     );
   
