@@ -124,9 +124,9 @@ function AuthorSearch() {
 
     return (
       <div id='page'>
-        <video className='videoTag' autoPlay loop muted>
+        {/* <video className='videoTag' autoPlay loop muted>
           <source src={bgvid2} type='video/mp4' />
-        </video>
+        </video> */}
         <div id='header'> {mainHeader()} </div>
         <div id='left' onClick={indexMinus}>
          <FaChevronLeft style={iconStyles}/>
