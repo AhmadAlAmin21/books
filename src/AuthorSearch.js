@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {
-  InputGroup,
-  Input,
-} from 'reactstrap';
+import { InputGroup, Input } from 'reactstrap';
 import axios from 'axios';
 import BookCard from './BookCard.js';
-import bgvid2 from './videos/bgvid2.mp4';
+// import bgvid2 from './videos/bgvid2.mp4';
 import LogoutButton from "./components/logout";
 import { gapi } from 'gapi-script';
 import { FaChevronRight, FaChevronLeft } from 'react-icons/fa';
@@ -19,6 +16,7 @@ function AuthorSearch() {
   const [query, setQuery] = useState('');
   const [cards, setCards] = useState([]);
   const [Index, setIndex] = useState(0);
+
   let iconStyles = { color: "white", fontSize: "3em"};
 
   useEffect(() => {
@@ -71,7 +69,7 @@ function AuthorSearch() {
 
     const indexPlus = () => {
       return(
-        setIndex( Index + 12 ) &
+        setIndex( Index + 13 ) &
         handleSubmit() &
         console.log("next. current index: " + Index)
       );
@@ -80,15 +78,14 @@ function AuthorSearch() {
     const indexMinus = () => {
       if(Index > 1){
       return(
-        setIndex( Index - 12 ) &
+        setIndex( Index - 13 ) &
         handleSubmit() &
         console.log("previos. current index: " + Index)
       );}
     };
 
   const handleCards = () => {
-
-      const items = cards.map((item) => {
+      const items = cards?.map((item) => {
         let thumbnail = '';
         if (item.volumeInfo.imageLinks) {
           thumbnail = item.volumeInfo.imageLinks.thumbnail;
@@ -109,17 +106,17 @@ function AuthorSearch() {
               infoLink={item.volumeInfo.infoLink}
               ratingCount={item.volumeInfo.ratingsCount}
               date={item.volumeInfo.publishedDate}
+
             />
           </div>
         );
       });
+
           return (
            <div className='container'>
-            <div className='row'>{items}</div>
-        </div>
-
-      );
-
+             <div className='row'>{items}</div>
+           </div>
+         );
   };
 
     return (

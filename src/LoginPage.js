@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import bgvid2 from './videos/bgvid2.mp4';
+// import bgvid2 from './videos/bgvid2.mp4';
 import LoginButton from "./components/login";
 import { gapi } from 'gapi-script';
 
