@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { InputGroup, Input } from 'reactstrap';
 import axios from 'axios';
 import BookCard from './BookCard.js';
-import bgvid2 from './assets/bgvid2.mp4';
+// import bgvid2 from './assets/bgvid2.mp4';
 import LogoutButton from "./components/logout";
 import { gapi } from 'gapi-script';
 import { FaChevronRight, FaChevronLeft } from 'react-icons/fa';
@@ -125,9 +125,9 @@ function AuthorSearch() {
 
     return (
       <div id='page'>
-        <video className='videoTag' autoPlay loop muted>
+        {/* <video className='videoTag' autoPlay loop muted>
           <source src={bgvid2} type='video/mp4' />
-        </video>
+        </video> */}
         <div id='header'>{mainHeader()}</div>
         <div id='left' onClick={indexMinus}>
          <FaChevronLeft style={iconStyles}/>

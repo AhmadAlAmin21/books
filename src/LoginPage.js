@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import bgvid2 from './assets/bgvid2.mp4';
+// import bgvid2 from './assets/bgvid2.mp4';
 import LoginButton from "./components/login";
 import { gapi } from 'gapi-script';
 
@@ -38,9 +38,9 @@ function LoginPage() {
 
     return (
       <div id='page'>
-          <video className='videoTag' autoPlay loop muted>
+          {/* <video className='videoTag' autoPlay loop muted>
             <source src={bgvid2} type='video/mp4' />
-          </video>
+          </video> */}
         <div id='header'> {mainHeader()} </div>
       </div>
     );
