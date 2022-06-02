@@ -9,7 +9,7 @@ function Login(){
     let navigate = useNavigate();
 
     const onSuccess = (res) => {
-        console.log("LOGIN SUCCESSFUL. Current user: ", res.profileObj);
+        console.log("LOGIN SUCCESSFUL! Current user: ", res.profileObj);
         navigate("/AuthorSearch")
     }
 

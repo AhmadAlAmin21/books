@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { InputGroup, Input } from 'reactstrap';
 import axios from 'axios';
 import BookCard from './BookCard.js';
-// import bgvid2 from './videos/bgvid2.mp4';
+import bgvid2 from './assets/bgvid2.mp4';
 import LogoutButton from "./components/logout";
 import { gapi } from 'gapi-script';
 import { FaChevronRight, FaChevronLeft } from 'react-icons/fa';
@@ -16,6 +16,7 @@ function AuthorSearch() {
   const [query, setQuery] = useState('');
   const [cards, setCards] = useState([]);
   const [Index, setIndex] = useState(0);
+  const [totalItems, setTotalItems] = useState(0);
 
   let iconStyles = { color: "white", fontSize: "3em"};
 
@@ -32,11 +33,12 @@ function AuthorSearch() {
   const handleSubmit = () => {
       axios
         .get(
-          `https://www.googleapis.com/books/v1/volumes?q=inauthor:${query}&orderBy=newest&startIndex=${Index}&maxResults=12`
+          `https://www.googleapis.com/books/v1/volumes?q=inauthor:${query}&orderBy=newest&startIndex=${Index}&maxResults=40`
         )
         .then(res => {
           console.log(res);
               setCards(res.data.items);
+              setTotalItems(res.data.totalItems);
             })
         .catch(err => {
           console.log(err.response);
@@ -68,17 +70,18 @@ function AuthorSearch() {
   };
 
     const indexPlus = () => {
+      if (totalItems > Index){
       return(
-        setIndex( Index + 13 ) &
+        setIndex( Index + 41 ) &
         handleSubmit() &
         console.log("next. current index: " + Index)
-      );
+      );}
     };
   
     const indexMinus = () => {
       if(Index > 1){
       return(
-        setIndex( Index - 13 ) &
+        setIndex( Index - 41 ) &
         handleSubmit() &
         console.log("previos. current index: " + Index)
       );}
@@ -89,10 +92,11 @@ function AuthorSearch() {
         let thumbnail = '';
         if (item.volumeInfo.imageLinks) {
           thumbnail = item.volumeInfo.imageLinks.thumbnail;
+        } else {
+          thumbnail = 'https://vignette.wikia.nocookie.net/pandorahearts/images/a/ad/Not_available.jpg/revision/latest?cb=20141028171337'
         }
-
         return (
-          <div className='col-lg-4 mb-3' key={item.id}>
+          <div className='col-lg-3 mb-3' key={item.id}>
             <BookCard
               thumbnail={thumbnail}
               title={item.volumeInfo.title}
@@ -121,14 +125,14 @@ function AuthorSearch() {
 
     return (
       <div id='page'>
-        {/* <video className='videoTag' autoPlay loop muted>
+        <video className='videoTag' autoPlay loop muted>
           <source src={bgvid2} type='video/mp4' />
-        </video> */}
-        <div id='header'> {mainHeader()} </div>
+        </video>
+        <div id='header'>{mainHeader()}</div>
         <div id='left' onClick={indexMinus}>
          <FaChevronLeft style={iconStyles}/>
         </div>
-        <div id='content'> {handleCards()} </div>
+        <div id='content'>{handleCards()}</div>
         <div id='right' onClick={indexPlus}>
         <FaChevronRight style={iconStyles}/>
         </div>

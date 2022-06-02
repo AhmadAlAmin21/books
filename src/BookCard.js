@@ -21,23 +21,27 @@ const BookCard = ({
   const toggle = () => setModal(!modal);
 
   return (
-    <Card style={{ width: '240px', height: '400px' }} className='m-auto ' onClick={toggle}>
+    <Card style={{ width: '150px', height: '250px' }} className='m-auto ' onClick={toggle}>
       <CardImg
         top
-        style={{ width: '100%', height: '233px' }}
+        style={{ width: '100%', height: '160px' }}
         src={thumbnail}
-        alt={title}
       />
       <CardBody className='overflow-hidden'>
-        <CardTitle>{title}</CardTitle>
-        <CardText>{publisher}</CardText>
-        <CardText>{date}</CardText>
+        <CardTitle id='card-title'>{`${title.substring(0, 25)}`}</CardTitle>
+        <CardText id='card-text-author'>{authors}</CardText>
+        <CardText id='card-text-date'>{date}</CardText>
       </CardBody>
       <Modal isOpen={modal} toggle={toggle}>
         <div className='modal-header d-flex justify-content-right'>
-          <h5 className='modal-title text-center' id='exampleModalLabel'>
+          <h5 className='modal-title text-center'>
             {title}
           </h5>
+          <button
+            onClick={toggle}
+          >
+            <span>X</span>
+          </button>
         </div>
         <div className='modal-body'>
           <div className='d-flex justify-content-between'>
