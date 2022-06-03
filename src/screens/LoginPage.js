@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react';
-import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 // import bgvid2 from './assets/bgvid2.mp4';
-import LoginButton from "./components/login";
+import LoginButton from "../components/login";
 import { gapi } from 'gapi-script';
 
 const clientId = "892353475241-8st4rgu8113tlaajj7mi4ftadmjhi5te.apps.googleusercontent.com";

@@ -14,7 +14,8 @@ const BookCard = ({
   ratingCount,
   previewLink,
   infoLink,
-  date
+  date,
+  epub
 }) => {
 
   const [modal, setModal] = useState(false);
@@ -65,6 +66,11 @@ const BookCard = ({
           <div>
             <a href={infoLink}>
               Info Link
+            </a>
+          </div>
+          <div>
+            <a href={epub}>
+              download as epub
             </a>
           </div>
         </div>

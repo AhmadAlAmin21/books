@@ -1,8 +1,7 @@
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import AuthorSearch from './AuthorSearch';
-import LoginPage from './LoginPage';
-import './App.css';
+import AuthorSearch from './screens/AuthorSearch';
+import LoginPage from './screens/LoginPage';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 

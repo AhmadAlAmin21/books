@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { InputGroup, Input } from 'reactstrap';
 import axios from 'axios';
-import BookCard from './BookCard.js';
+import BookCard from './BookCard';
 // import bgvid2 from './assets/bgvid2.mp4';
-import LogoutButton from "./components/logout";
+import LogoutButton from "../components/logout";
 import { gapi } from 'gapi-script';
 import { FaChevronRight, FaChevronLeft } from 'react-icons/fa';
+import {useNavigate } from 'react-router-dom';
+
 
 const clientId = "892353475241-8st4rgu8113tlaajj7mi4ftadmjhi5te.apps.googleusercontent.com";
+
 
 function AuthorSearch() {
   
@@ -19,6 +21,7 @@ function AuthorSearch() {
   const [totalItems, setTotalItems] = useState(0);
 
   let iconStyles = { color: "white", fontSize: "3em"};
+  let navigate = useNavigate();
 
   useEffect(() => {
     function start() {
@@ -30,19 +33,16 @@ function AuthorSearch() {
     gapi.load('client:auth2', start);
   });
 
-  const handleSubmit = () => {
-      axios
-        .get(
-          `https://www.googleapis.com/books/v1/volumes?q=inauthor:${query}&orderBy=newest&startIndex=${Index}&maxResults=40`
-        )
-        .then(res => {
-          console.log(res);
-              setCards(res.data.items);
-              setTotalItems(res.data.totalItems);
-            })
-        .catch(err => {
-          console.log(err.response);
-        });
+  const handleSubmit = async () => {
+    try {
+      const res = await axios.get(`https://www.googleapis.com/books/v1/volumes?q=inauthor:${query}&orderBy=newest&startIndex=${Index}&maxResults=12`);
+      console.log(res);
+      setCards(res.data.items);
+      setTotalItems(res.data.totalItems);
+    } catch(err) {
+      navigate("/Books");
+      console.error(err);
+    }
   };
 
   const mainHeader = () => {
@@ -72,16 +72,16 @@ function AuthorSearch() {
     const indexPlus = () => {
       if (totalItems > Index){
       return(
-        setIndex( Index + 41 ) &
+        setIndex( Index + 13 ) &
         handleSubmit() &
         console.log("next. current index: " + Index)
       );}
     };
   
     const indexMinus = () => {
-      if(Index > 1){
+      if(Index > 0){
       return(
-        setIndex( Index - 41 ) &
+        setIndex( Index - 13 ) &
         handleSubmit() &
         console.log("previos. current index: " + Index)
       );}
@@ -96,8 +96,9 @@ function AuthorSearch() {
           thumbnail = 'https://vignette.wikia.nocookie.net/pandorahearts/images/a/ad/Not_available.jpg/revision/latest?cb=20141028171337'
         }
         return (
-          <div className='col-lg-3 mb-3' key={item.id}>
+          <div className='col-lg-3 mb-3'>
             <BookCard
+              key={item.id}
               thumbnail={thumbnail}
               title={item.volumeInfo.title}
               pageCount={item.volumeInfo.pageCount}
@@ -110,7 +111,7 @@ function AuthorSearch() {
               infoLink={item.volumeInfo.infoLink}
               ratingCount={item.volumeInfo.ratingsCount}
               date={item.volumeInfo.publishedDate}
-
+              epud={item.accessInfo.epub.acsTokenLink}
             />
           </div>
         );
