@@ -45,8 +45,6 @@ function AuthorSearch() {
         setLoading(false);
       }
     } catch(err) {
-      setLoading(true);
-      navigate("/Books");
       console.error(err);
     }
   };
