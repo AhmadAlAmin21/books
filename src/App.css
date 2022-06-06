@@ -1,3 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
+*{
+  font-family: 'Poppins', sans-serif;
+}
+
 body {
   overflow-x: hidden;
   overflow-y: hidden;
@@ -70,14 +76,6 @@ body::-webkit-scrollbar {
     border-left: 1px solid white;
   }
 
-.logout_button{
-  position: absolute;
-  z-index: 3;
-  margin-top: 20px;
-  margin-left: 20px;
-  width: 150px;
-  opacity: 50%;
-}
 
 
 
@@ -87,14 +85,16 @@ body::-webkit-scrollbar {
   transition: all 300ms ease;
 }
 
-/* video{
-  object-fit: fill;
+ video{
+  object-fit: cover;
   position: absolute;
-  min-width: 100%;
-  height: 100vh;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   opacity: 50%;
   z-index: 0;
-} */
+} 
 
 #card-title{
   font-size: .7rem;

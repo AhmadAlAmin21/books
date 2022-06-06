@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { InputGroup, Input } from 'reactstrap';
+import { InputGroup, Input, Spinner } from 'reactstrap';
 import axios from 'axios';
 import BookCard from './BookCard';
-// import bgvid2 from './assets/bgvid2.mp4';
+import bgvid2 from './assets/bgvid2.mp4';
 import LogoutButton from "../components/logout";
 import { gapi } from 'gapi-script';
 import { FaChevronRight, FaChevronLeft } from 'react-icons/fa';
@@ -19,6 +19,7 @@ function AuthorSearch() {
   const [cards, setCards] = useState([]);
   const [Index, setIndex] = useState(0);
   const [totalItems, setTotalItems] = useState(0);
+  const [loading, setLoading] = useState(false);
 
   let iconStyles = { color: "white", fontSize: "3em"};
   let navigate = useNavigate();
@@ -34,12 +35,17 @@ function AuthorSearch() {
   });
 
   const handleSubmit = async () => {
+    setLoading(true);
     try {
       const res = await axios.get(`https://www.googleapis.com/books/v1/volumes?q=inauthor:${query}&orderBy=newest&startIndex=${Index}&maxResults=12`);
-      console.log(res);
-      setCards(res.data.items);
-      setTotalItems(res.data.totalItems);
+      if (res.data.items.length > 0) {
+        console.log(res);
+        setCards(res.data.items);
+        setTotalItems(res.data.totalItems);
+        setLoading(false);
+      }
     } catch(err) {
+      setLoading(true);
       navigate("/Books");
       console.error(err);
     }
@@ -88,6 +94,13 @@ function AuthorSearch() {
     };
 
   const handleCards = () => {
+    if (loading) {
+      return (
+        <div className='d-flex justify-content-center mt-3'>
+          <Spinner style={{ width: '3rem', height: '3rem', color: "white" }} />
+        </div>
+      );
+    } else {
       const items = cards?.map((item) => {
         let thumbnail = '';
         if (item.volumeInfo.imageLinks) {
@@ -112,6 +125,7 @@ function AuthorSearch() {
               ratingCount={item.volumeInfo.ratingsCount}
               date={item.volumeInfo.publishedDate}
               epud={item.accessInfo.epub.acsTokenLink}
+              pdf={item.accessInfo.pdf.acsTokenLink}
             />
           </div>
         );
@@ -121,14 +135,14 @@ function AuthorSearch() {
            <div className='container'>
              <div className='row'>{items}</div>
            </div>
-         );
+         );}
   };
 
     return (
       <div id='page'>
-        {/* <video className='videoTag' autoPlay loop muted>
+        <video className='videoTag' autoPlay loop muted>
           <source src={bgvid2} type='video/mp4' />
-        </video> */}
+        </video>
         <div id='header'>{mainHeader()}</div>
         <div id='left' onClick={indexMinus}>
          <FaChevronLeft style={iconStyles}/>
