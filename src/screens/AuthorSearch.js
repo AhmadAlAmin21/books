@@ -7,7 +7,6 @@ import bgvid2 from './assets/bgvid2.mp4';
 import LogoutButton from "../components/logout";
 import { gapi } from 'gapi-script';
 import { FaChevronRight, FaChevronLeft } from 'react-icons/fa';
-import {useNavigate } from 'react-router-dom';
 
 
 const clientId = "892353475241-8st4rgu8113tlaajj7mi4ftadmjhi5te.apps.googleusercontent.com";
@@ -22,7 +21,6 @@ function AuthorSearch() {
   const [loading, setLoading] = useState(false);
 
   let iconStyles = { color: "white", fontSize: "3em"};
-  let navigate = useNavigate();
 
   useEffect(() => {
     function start() {
@@ -53,7 +51,7 @@ function AuthorSearch() {
     return (
     <div>
       <div className='position-relative header d-flex justify-content-top align-items-center flex-column'>
-        <h1 className='display-2 text-center text-white mb-3 mt-5'>
+        <h1 className='display-2 text-center text-white mb-3 mt-5 overflow-hidden'>
           Search For Authors
         </h1>
         <div style={{ width: '60%', zIndex: 2 }}>
@@ -94,7 +92,7 @@ function AuthorSearch() {
   const handleCards = () => {
     if (loading) {
       return (
-        <div className='d-flex justify-content-center mt-3'>
+        <div className='d-flex justify-content-center mt-4'>
           <Spinner style={{ width: '3rem', height: '3rem', color: "white" }} />
         </div>
       );
@@ -107,7 +105,7 @@ function AuthorSearch() {
           thumbnail = 'https://vignette.wikia.nocookie.net/pandorahearts/images/a/ad/Not_available.jpg/revision/latest?cb=20141028171337'
         }
         return (
-          <div className='col-lg-3 mb-3'>
+          <div className='col-md-3 mb-3'>
             <BookCard
               key={item.id}
               thumbnail={thumbnail}
@@ -128,7 +126,6 @@ function AuthorSearch() {
           </div>
         );
       });
-
           return (
            <div className='container'>
              <div className='row'>{items}</div>

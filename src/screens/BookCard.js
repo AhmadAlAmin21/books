@@ -29,7 +29,7 @@ const BookCard = ({
         style={{ width: '100%', height: '160px' }}
         src={thumbnail}
       />
-      <CardBody className='overflow-hidden'>
+      <CardBody id='cardbody'>
         <CardTitle id='card-title'>{`${title.substring(0, 25)}`}</CardTitle>
         <CardText id='card-text-author'>{authors}</CardText>
         <CardText id='card-text-date'>{date}</CardText>
@@ -70,13 +70,11 @@ const BookCard = ({
             </a>
           </div>
           <div>
-            <a href={epub}>
-              download as epub
+            <a href={epub}>epub
             </a>
           </div>
           <div>
-            <a href={pdf}>
-              download as pdf
+            <a href={pdf}>pdf
             </a>
           </div>
         </div>
