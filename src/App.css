@@ -12,10 +12,6 @@ body::-webkit-scrollbar {
   display: none;
 }
 
-#page > *{
-  margin-bottom: 10px;
-}
-
 @media screen {
   #page > * {
     margin-bottom: 0;
@@ -42,59 +38,63 @@ body::-webkit-scrollbar {
 }
 }
 
-  #left{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 3;
+/* CHEVRONS */
+
+#left{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
+}
+
+#left:hover{
+  box-shadow: 0 50px 40px 0 rgba(0, 0, 0, 0.6);
+  transition: all 300ms ease;
+}
+
+#right{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
   }
 
-  #left:hover{
-    box-shadow: 0 50px 40px 0 rgba(0, 0, 0, 0.6);
-    transition: all 300ms ease;
-  }
+#right:hover{
+  box-shadow: 0 50px 40px 0 rgba(0, 0, 0, 0.6);
+  transition: all 300ms ease;
+}
 
-  #right{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 3;
-    }
+#chevR:hover{
+  transform: scale(1.2);
+  transition: all 300ms ease;
+}
 
-  #right:hover{
-    box-shadow: 0 50px 40px 0 rgba(0, 0, 0, 0.6);
-    transition: all 300ms ease;
-  }
+#chevL:hover{
+  transform: scale(1.2);
+  transition: all 300ms ease;
+}
 
+/* CRADS */
 
-  .m-auto:hover{
-    transform: scale(1.1);
-    box-shadow: 0 10px 40px 0 rgba(0, 0, 0, 0.4);
-    transition: all 300ms ease;
-  }
+#cardbody{
+  overflow: auto;
+  align-items: center;
+}
 
-video{
-object-fit: cover;
-position: absolute;
-top: 0;
-left: 0;
-width: 100%;
-height: 100%;
-opacity: 50%;
-z-index: 0;
-} 
+#cardbody::-webkit-scrollbar { 
+  display: none;
+}
 
 #card-title{
+  margin-top: -10px;
   font-size: .7rem;
   font-weight: 900;
-  margin-bottom: 10px;
-  margin-top: -10px;
   text-align: center;
 }
 
 #card-text-author{
   font-size: .6rem;
-  margin-top: -5px;
+  margin-top: 10px;
   margin-bottom: 20px;
   font-weight: 600;
   text-align: center;
@@ -108,10 +108,45 @@ z-index: 0;
   text-align: center;
 }
 
-  #cardbody{
-    overflow: auto;
-  }
+.m-auto:hover{
+  transform: scale(1.1);
+  box-shadow: 0 10px 40px 0 rgba(0, 0, 0, 0.4);
+  transition: all 300ms ease;
+}
 
-  #cardbody::-webkit-scrollbar { 
-    display: none;
-  }
+/* VIDEO BACKGROUND */
+
+video{
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 50%;
+  z-index: 0;
+}
+
+/* MODAL STYLING */
+
+#modalImage{
+  float: left;
+}
+
+#modalContent{
+  overflow : hidden;
+  font-size: .8rem;
+}
+
+#description{
+  font-size: .8rem;
+}
+
+#modalFooter{
+  font-size: .8rem;
+}
+
+#link:link{
+  text-decoration: none;
+  margin-right: 2px;
+}

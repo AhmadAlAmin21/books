@@ -99,10 +99,16 @@ function AuthorSearch() {
     } else {
       const items = cards?.map((item) => {
         let thumbnail = '';
+        let description = item.volumeInfo.description;
         if (item.volumeInfo.imageLinks) {
           thumbnail = item.volumeInfo.imageLinks.thumbnail;
         } else {
           thumbnail = 'https://vignette.wikia.nocookie.net/pandorahearts/images/a/ad/Not_available.jpg/revision/latest?cb=20141028171337'
+        }
+        if(description !== undefined){
+          console.log("Theres a description");
+        } else {
+          description = "No Description Available";
         }
         return (
           <div className='col-md-3 mb-3'>
@@ -115,13 +121,13 @@ function AuthorSearch() {
               authors={item.volumeInfo.authors}
               publisher={item.volumeInfo.publisher}
               rating={item.volumeInfo.averageRating}
-              description={item.volumeInfo.description}
               previewLink={item.volumeInfo.previewLink}
               infoLink={item.volumeInfo.infoLink}
               ratingCount={item.volumeInfo.ratingsCount}
               date={item.volumeInfo.publishedDate}
               epud={item.accessInfo.epub.acsTokenLink}
               pdf={item.accessInfo.pdf.acsTokenLink}
+              description={description}
             />
           </div>
         );
@@ -140,11 +146,11 @@ function AuthorSearch() {
         </video>
         <div id='header'>{mainHeader()}</div>
         <div id='left' onClick={indexMinus}>
-         <FaChevronLeft style={iconStyles}/>
+         <FaChevronLeft id='chevL' style={iconStyles}/>
         </div>
         <div id='content'>{handleCards()}</div>
         <div id='right' onClick={indexPlus}>
-        <FaChevronRight style={iconStyles}/>
+        <FaChevronRight id='chevR' style={iconStyles}/>
         </div>
       </div>
     );
