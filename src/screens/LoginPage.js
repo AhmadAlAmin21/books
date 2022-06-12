@@ -22,7 +22,7 @@ function LoginPage() {
     return (
     <div>
       <div className='position-relative header d-flex justify-content-top align-items-center flex-column'>
-        <h1 className='display-2 text-center text-white mb-3 mt-5'>
+        <h1 style={{ maxWidth: '80%'}} className='display-2 text-center text-white mb-3 mt-5'>
           Search For Authors
         </h1>
         <div style={{ width: '60%', zIndex: 2 }}>

@@ -1,16 +1,23 @@
 import { GoogleLogout } from 'react-google-login';
 import { useNavigate } from 'react-router-dom';
+import { UserContext } from '../App';
+import { useContext } from "react";
 
 const clientId = "892353475241-8st4rgu8113tlaajj7mi4ftadmjhi5te.apps.googleusercontent.com";
 
 function Logout(){
 
-    let navigate = useNavigate();
+    const { user, setUser } = useContext(UserContext);
+    const navigate = useNavigate();
 
-    const onSuccess = () => {
+    const onSuccess = (res) => {
         console.log("LOGOUT SUCCESSFUL.");
-        navigate("/Books")
-    }
+        if (!user.loggedIn) return;
+        setUser({ loggedIn: false });
+        navigate("/books");
+        }
+
+    
 
     return(
         <div id="signOutButton">

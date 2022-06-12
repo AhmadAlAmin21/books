@@ -26,12 +26,12 @@ const BookCard = ({
   const toggle = () => setModal(!modal);
 
   return (
-    <Card id='mainCard' style={{ width: '150px', height: '250px' }} className='m-auto ' onClick={toggle}>
+    <Card id='mainCard' className='m-auto ' onClick={toggle}>
       <CardImg
+        id='cardImage'
         top
-        style={{ width: '100%', height: '160px' }}
         src={thumbnail}
-      />
+        />
       <CardBody id='cardbody'>
         <CardTitle id='card-title'>{`${title.substring(0, 35)}`}</CardTitle>
         <CardText id='card-text-author'>{authors}</CardText>
@@ -47,7 +47,7 @@ const BookCard = ({
         </div>
 
         <div>
-            <img id='modalImage' className='mt-4 mb-4 ms-4 me-4' style={{ width: '160px', height: '250px' }} src={thumbnail} alt={''} />
+            <img id='modalImage' className='mt-4 mb-4 ms-4 me-4' style={{ width: '160px', height: 'auto' }} src={thumbnail} alt={''} />
             <div id='modalContent' className='mt-4'>
               <p>Page Count: {pageCount}</p>
               <p>Language: {language}</p>

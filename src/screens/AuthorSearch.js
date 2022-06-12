@@ -35,7 +35,7 @@ function AuthorSearch() {
   const handleSubmit = async () => {
     setLoading(true);
     try {
-      const res = await axios.get(`https://www.googleapis.com/books/v1/volumes?q=inauthor:${query}&orderBy=newest&startIndex=${Index}&maxResults=12`);
+      const res = await axios.get(`https://www.googleapis.com/books/v1/volumes?q=inauthor:${query}&orderBy=newest&startIndex=${Index}&maxResults=8`);
       if (res.data.items.length > 0) {
         console.log(res);
         setCards(res.data.items);
@@ -50,19 +50,19 @@ function AuthorSearch() {
   const mainHeader = () => {
     return (
     <div>
-      <div className='position-relative header d-flex justify-content-top align-items-center flex-column'>
-        <h1 className='display-2 text-center text-white mb-3 mt-5 overflow-hidden'>
+      <div className='position-relative d-flex justify-content-top align-items-center flex-column'>
+        <h1 style={{ maxWidth: '80%'}} className='display-2 text-center text-white mb-2 mt-3 overflow-hidden'>
           Search For Authors
         </h1>
-        <div style={{ width: '60%', zIndex: 2 }}>
-          <InputGroup id="searchbar" size='lg' className='mb-3'>
+        <div style={{ width: '60%', zIndex: 2, minWidth: "300px" }}>
+          <InputGroup id="searchbar" className='mb-3'>
             <Input
               placeholder='Author Name...'
               value={query}
               onChange={e => setQuery(e.target.value) & handleSubmit() & console.log("search. current index: " + Index)}
             />
           </InputGroup >
-          <div className='position-relative d-flex justify-content-center align-items-center flex-column mb-3'>
+          <div id='logoutbuttondiv' className='position-relative d-flex justify-content-center align-items-center flex-column'>
           <LogoutButton/>
           </div>
         </div>
@@ -74,7 +74,7 @@ function AuthorSearch() {
     const indexPlus = () => {
       if (totalItems > Index){
       return(
-        setIndex( Index + 13 ) &
+        setIndex( Index + 9 ) &
         handleSubmit() &
         console.log("next. current index: " + Index)
       );}
@@ -83,7 +83,7 @@ function AuthorSearch() {
     const indexMinus = () => {
       if(Index > 0){
       return(
-        setIndex( Index - 13 ) &
+        setIndex( Index - 9 ) &
         handleSubmit() &
         console.log("previos. current index: " + Index)
       );}
@@ -106,7 +106,6 @@ function AuthorSearch() {
           thumbnail = 'https://vignette.wikia.nocookie.net/pandorahearts/images/a/ad/Not_available.jpg/revision/latest?cb=20141028171337'
         }
         if(description !== undefined){
-          console.log("Theres a description");
         } else {
           description = "No Description Available";
         }
